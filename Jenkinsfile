@@ -81,6 +81,17 @@ pipeline {
 
 
   }
- 
+ post {
+    
+    success {
+      slackSend (channel: '#development-alerts', color: 'good', message: "The Job was built successfully")
+    }
 
+    failure {
+      slackSend (channel: '#development-alerts', color: '#FF0000', message: "The Job was not built successfully")
+    }
+}
+
+	
+	
 }
