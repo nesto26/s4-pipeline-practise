@@ -72,7 +72,7 @@ pipeline {
             steps {
                 sh '''
                 ls 
-                pwd
+                ls -la
                 uname -r
                 '''
             }
