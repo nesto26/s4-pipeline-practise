@@ -112,18 +112,18 @@ options {
             steps {
                 sh '''
                cd UI
-                - docker build -t devopseasylearing2021/s3-ui:$UITag .
+                - docker build -t devopseasylearing2021/s4-ui:$UITag .
                 - cd -
 
                cd DB
-                - docker build -t devopseasylearing2021/s3-ui:$DBTag .
+                - docker build -t devopseasylearing2021/s4-ui:$DBTag .
                 - cd -
     
                cd auth
-                - docker build -t devopseasylearing2021/s3-ui:$AUTHTag .
+                - docker build -t devopseasylearing2021/s4-ui:$AUTHTag .
                 - cd -
               cd weather
-                - docker build -t devopseasylearing2021/s3-ui:$WEATHERTag .
+                - docker build -t devopseasylearing2021/s4-ui:$WEATHERTag .
                 - cd -
                 '''
             }
