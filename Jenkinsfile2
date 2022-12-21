@@ -18,41 +18,41 @@ options {
                         parameters([    
                         
                         choice(
-                            choices: ['DEV', 'SANDBOX','PROD'], 
+                            choices: ['DEV', 'SANBOX','PROD'], 
                             name: 'Environment'   
                                 ),
 
                           string(
                             defaultValue: 's4user',
-                            name: 'User',
+                            name: 'USER',
 			                description: 'Required to enter your name',
                             trim: true
                             ),
 
                           string(
-                            defaultValue: 'eric-001',
-                            name: 'DB-Tag',
+                            defaultValue: 'v1.0.0',
+                            name: 'DBTag',
 			                description: 'Required to enter the image tag',
                             trim: true
                             ),
 
                           string(
-                            defaultValue: 'eric-001',
-                            name: 'UI-Tag',
+                            defaultValue: 'v1.0.0',
+                            name: 'UITag',
 			                description: 'Required to enter the image tag',
                             trim: true
                             ),
 
                           string(
-                            defaultValue: 'eric-001',
-                            name: 'WEATHER-Tag',
+                            defaultValue: 'v1.0.0',
+                            name: 'WEATHERTag',
 			                description: 'Required to enter the image tag',
                             trim: true
                             ),
 
                           string(
-                            defaultValue: 'eric-001',
-                            name: 'AUTH-Tag',
+                            defaultValue: 'v1.0.0',
+                            name: 'AUTHTag',
 			                description: 'Required to enter the image tag',
                             trim: true
                             ),
@@ -62,45 +62,35 @@ options {
             }
         }
  
-        stage('permission') {
+stage('permission') {
             steps {
                 sh '''
-                
-             cat <<EOF> check.sh
-             
-                #! bin/bash
+cat permission.txt | grep -o $USER
+echo $?
 
-                cat permission.txt | grep -o $USER 
-
-                echo $?
-	         EOF
-
-             bash check.sh
                 '''
-                
             }
         }
-
+	    
         stage('cleaning') {
             steps {
                 sh '''
                 ls 
-                pwd
                 '''
             }
         }
 
-        stage('sonarqube analysis') {
+    stage('SonarQube analysis') {
             agent {
                 docker {
                   image 'sonarsource/sonar-scanner-cli:4.7.0'
                 }
                }
-             environment {
+               environment {
         CI = 'true'
         //  scannerHome = tool 'Sonar'
         scannerHome='/opt/sonar-scanner'
-    }  
+    }
             steps{
                 withSonarQubeEnv('Sonar') {
                     sh "${scannerHome}/bin/sonar-scanner"
@@ -109,41 +99,71 @@ options {
         }
 
         stage('build-dev') {
+         when{ 
+          expression {
+            env.Environment == 'DEV' }
+            }
             steps {
                 sh '''
-               cd UI
-                - docker build -t devopseasylearing2021/s4-ui:$UITag .
-                - cd -
-
-               cd DB
-                - docker build -t devopseasylearing2021/s4-ui:$DBTag .
-                - cd -
-    
-               cd auth
-                - docker build -t devopseasylearing2021/s4-ui:$AUTHTag .
-                - cd -
-              cd weather
-                - docker build -t devopseasylearing2021/s4-ui:$WEATHERTag .
-                - cd -
+cd UI
+docker build -t devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker build -t devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker build -t devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker build -t devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
 
         stage('build-sanbox') {
+          when{ 
+              expression {
+                env.Environment == 'SANBOX' }
+                }
             steps {
                 sh '''
-                ls 
-                pwd
+cd UI
+docker build -t devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker build -t devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker build -t devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker build -t devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
 
 
         stage('build-prod') {
+          when{ 
+              expression {
+                env.Environment == 'PROD' }
+                }
             steps {
                 sh '''
-                ls 
-                pwd
+cd UI
+docker build -t devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker build -t devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker build -t devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker build -t devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
@@ -249,3 +269,5 @@ options {
 
 	
 }
+
+
