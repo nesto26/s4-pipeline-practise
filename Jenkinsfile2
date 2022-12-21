@@ -171,35 +171,76 @@ cd -
         stage('login') {
             steps {
                 sh '''
-                ls 
-                pwd
+                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u devopseasylearning2021 --password-stdin
                 '''
             }
         }
 
         stage('push-to-dockerhub-dev') {
+            when{ 
+          expression {
+            env.Environment == 'DEV' }
+            }
             steps {
                 sh '''
-                ls 
-                pwd
+                cd UI
+docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
 
         stage('push-to-dockerhub-sanbox') {
+            when{ 
+          expression {
+            env.Environment == 'SANDBOX' }
+            }
             steps {
                 sh '''
-                ls 
-                pwd
+                cd UI
+docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
 
         stage('push-to-dockerhub-prod') {
+            when{ 
+          expression {
+            env.Environment == 'PROD' }
+            }
             steps {
                 sh '''
-                ls 
-                pwd
+                cd UI
+docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
+cd -
+cd DB
+docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
+cd -
+cd auth 
+docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
+cd -
+cd weather 
+docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
+cd -
                 '''
             }
         }
