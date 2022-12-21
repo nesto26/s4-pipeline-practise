@@ -66,23 +66,12 @@ options {
             steps {
                 sh '''
                 
-             cat <<EOF> check.sh
-             echo $USER
-             echo $Environment
-                #! bin/bash
-
-                USER=$User
+             
+                
 
                 cat permission.txt | grep -o $USER 
 
-                if 
-                [[ $? -eq 0 ]]
-                then
-                echo "You have permission to run this job"
-                else
-                echo "You don't have permission to run this job"
-                exit 1
-                fi
+                echo $?
 	         EOF
 
              bash check.sh
