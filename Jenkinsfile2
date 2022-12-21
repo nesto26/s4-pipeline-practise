@@ -67,12 +67,14 @@ options {
                 sh '''
                 
              
-                
+                cat <<EOF> check.sh
+             
+                #! bin/bash
 
                 cat permission.txt | grep -o $USER 
 
                 echo $?
-	         EOF
+	        EOF
 
              bash check.sh
                 '''
