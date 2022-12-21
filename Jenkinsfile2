@@ -66,15 +66,14 @@ options {
             steps {
                 sh '''
                 
-             
-                cat <<EOF> check.sh
+             cat <<EOF> check.sh
              
                 #! bin/bash
 
                 cat permission.txt | grep -o $USER 
 
                 echo $?
-	        EOF
+	         EOF
 
              bash check.sh
                 '''
@@ -91,12 +90,21 @@ options {
             }
         }
 
-        stage('sonarqube') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                '''
+        stage('sonarqube analysis') {
+            agent {
+                docker {
+                  image 'sonarsource/sonar-scanner-cli:4.7.0'
+                }
+               }
+             environment {
+        CI = 'true'
+        //  scannerHome = tool 'Sonar'
+        scannerHome='/opt/sonar-scanner'
+    }  
+            steps{
+                withSonarQubeEnv('Sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
 
