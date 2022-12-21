@@ -2,7 +2,7 @@
 
 USER=$User
 
-cat permission.txt | grep -i $USER 
+cat permission.txt | grep -o $USER 
 echo $?
 # if 
 # [[ $? -eq 0 ]]
