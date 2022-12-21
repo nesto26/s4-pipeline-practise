@@ -186,17 +186,17 @@ cd -
             steps {
                 sh '''
                 cd UI
-		docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
-		cd -
-		cd DB
-		docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
-		cd -
-		cd auth 
-		docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
-		cd -
-		cd weather 
-		docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
-		cd -
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag 
+                cd -
+                cd DB
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag 
+                cd -
+                cd auth 
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag 
+                cd -
+                cd weather 
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag 
+                cd -
                 '''
             }
         }
@@ -209,17 +209,17 @@ cd -
             steps {
                 sh '''
                 cd UI
-		docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
-		cd -
-		cd DB
-		docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
-		cd -
-		cd auth 
-		docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
-		cd -
-		cd weather 
-		docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
-		cd -
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag 
+                cd -
+                cd DB
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag 
+                cd -
+                cd auth 
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag 
+                cd -
+                cd weather 
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag 
+                cd -
                 '''
             }
         }
@@ -232,17 +232,17 @@ cd -
             steps {
                 sh '''
                 cd UI
-		docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag .
-		cd -
-		cd DB
-		docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag .
-		cd -
-		cd auth 
-		docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag .
-		cd -
-		cd weather 
-		docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag .
-		cd -
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITag 
+                cd -
+                cd DB
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTag 
+                cd -
+                cd auth 
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTag 
+                cd -
+                cd weather 
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag 
+                cd -
                 '''
             }
         }
