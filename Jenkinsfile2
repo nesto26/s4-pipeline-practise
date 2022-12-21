@@ -18,7 +18,7 @@ options {
                         parameters([    
                         
                         choice(
-                            choices: ['Dev', 'Sanbox','Prod'], 
+                            choices: ['DEV', 'SANDBOX','PROD'], 
                             name: 'Environment'   
                                 ),
 
@@ -65,25 +65,29 @@ options {
         stage('permission') {
             steps {
                 sh '''
+                
              cat <<EOF> check.sh
-	     #! bin/bash
+             echo $USER
+             echo $Environment
+                #! bin/bash
 
-		USER=$User
+                USER=$User
 
-		cat permission.txt | grep -i $USER 
+                cat permission.txt | grep -o $USER 
 
-		if 
-		[[ $? -eq 0 ]]
-		then
-		echo "You have permission to run this job"
-		else
-		echo "You don't have permission to run this job"
-		exit 1
-		fi
-	     EOF
-	     
-	     bash check.sh
+                if 
+                [[ $? -eq 0 ]]
+                then
+                echo "You have permission to run this job"
+                else
+                echo "You don't have permission to run this job"
+                exit 1
+                fi
+	         EOF
+
+             bash check.sh
                 '''
+                
             }
         }
 
@@ -234,4 +238,3 @@ options {
 
 	
 }
-
