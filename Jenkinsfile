@@ -71,7 +71,7 @@ pipeline {
         stage('Hello') {
             steps {
                 sh '''
-                ls 
+                ls -l
                 pwd
                 uname -r
                 '''
