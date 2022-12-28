@@ -237,10 +237,10 @@ docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTag
 	          ]) {
 
 	            sh '''
-                 git config --global user.name "devopseasylearning"
-                 git config --global user.email info@devopseasylearning.com
+                 git config --global user.name ""nesto26""
+                 git config --global user.email nestork093@gmail.com
                 rm -rf s4-pipeline-practise || true
-                git clone  https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git
+                git clone  https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git
                 cd s4-pipeline-practise/CHARTS
 cat <<EOF > dev-values.yaml           
         image:
@@ -259,7 +259,7 @@ cat <<EOF > dev-values.yaml
 EOF
                 git add -A 
                 git commit -m "testing jenkins"
-                git push https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git || true
+                git push https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git || true
 
 	            '''
 	          }
@@ -283,10 +283,10 @@ EOF
 	          ]) {
 
 	            sh '''
-                 git config --global user.name "devopseasylearning"
-                 git config --global user.email info@devopseasylearning.com
+                 git config --global user.name "nesto26"
+                 git config --global user.email nestork093@gmail.com
                 rm -rf s4-pipeline-practise || true
-                git clone  https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git
+                git clone  https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git
                 cd s4-pipeline-practise/CHARTS
 cat <<EOF > sanbox-values.yaml           
         image:
@@ -305,7 +305,7 @@ cat <<EOF > sanbox-values.yaml
 EOF
                 git add -A 
                 git commit -m "testing jenkins"
-                git push https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git  || true
+                git push https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git  || true
 
 	            '''
 	          }
@@ -330,10 +330,10 @@ EOF
 	          ]) {
 
 	            sh '''
-                 git config --global user.name "devopseasylearning"
-                 git config --global user.email info@devopseasylearning.com
+                 git config --global user.name ""nesto26""
+                 git config --global user.email nestork093@gmail.com
                 rm -rf s4-pipeline-practise || true
-                git clone  https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git
+                git clone https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git
                 cd s4-pipeline-practise/CHARTS
 cat <<EOF > prod-values.yaml           
         image:
@@ -352,7 +352,7 @@ cat <<EOF > prod-values.yaml
 EOF
                 git add -A 
                 git commit -m "testing jenkins"
-                git push https://devopseasylearning:$TOKEN@github.com/devopseasylearning/s4-pipeline-practise.git  || true
+                git push https://nesto26:$NESTORTOKEN@github.com/nesto26/s4-pipeline-practise.git  || true
 
 	            '''
 	          }
