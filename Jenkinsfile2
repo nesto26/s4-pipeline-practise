@@ -278,7 +278,7 @@ cd -
             steps {
                 sh '''
                 ls 
-                pwd
+                uname -r
                 '''
             }
         }
